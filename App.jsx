@@ -1,27 +1,26 @@
-import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import { useState } from 'react'
-import Navbar from './Navbar'
 import './App.css'
-import Home from './Home'
-import About from './About'
-import Contact from './contact'
-
 function App() {
-  <h1>Navbar</h1>
+  const[num1,setNum1]=useState("");
+  const[num2,setNum2]=useState("");
+
+  const a =Number(num1);
+  const b =Number(num2);
+
+  
+
+
 
   return (
     <>
-    <BrowserRouter>
-    <h1>navbar component</h1>
-    <Navbar/>
-    <Routes>
-     
-       <Route path='/'element={<Home/>}/>
-       <Route path='/about' element={<About/>} />
-       <Route path='/contact'element={<Contact/>}/>
-    </Routes>
-    
-    </BrowserRouter>
+     <h1>Live Calculator</h1> 
+     <input type="number" value={num1} onChange={(e)=>setNum1(e.target.value)}/>
+     <input type="number" value={num2} onChange={(e)=>setNum2(e.target.value)}/>
+     <h2>Result</h2>
+     <p>Addition: {a+b}</p>
+     <p>Subtraction:{a-b}</p>
+     <p>Division: {a/b}</p>
+     <p>Multiply: {a*b}</p>
     </>
   )
 }
