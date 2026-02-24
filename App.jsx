@@ -1,28 +1,26 @@
-import { useEffect ,useState} from 'react'
+import { useState } from 'react'
 import './App.css'
 function App() {
-  const[users,setUsers]=useState([])
+  const[num1,setNum1]=useState("");
+  const[num2,setNum2]=useState("");
 
-  useEffect(()=>{
-    fetch("https://jsonplaceholder.typicode.com/users")
-    .then((res)=>res.json())
-    .then((data)=>setUsers(data));
-  },[])
+  const a=Number(num1);
+  const b=Number(num2);
+
+
+  
   return (
     <>
-     <h1>Mapped users</h1>
-     {
-      users.map((user)=>(
-        <div>
-          <h1>Name:{user.name}</h1>
-          <h2>Email:{user.email}</h2>
-          <h2>Phone:{user.phone}</h2>
-          <h2>Website:{user.website}</h2>
-          
-          
-        </div>
-      ))
-     } 
+    <h1>Live Calculator</h1>
+    <input type="number" value={num1} onChange={(e)=>setNum1(e.target.value)} />
+    <input type="number" value={num2} onChange={(e)=>setNum2(e.target.value)} />
+    <h2>Results</h2>
+    <p>Addition:{a+b}</p>
+    <p>Subtraction:{a-b}</p>
+    <p>Multiply:{a*b}</p>
+    <p>Division:{a/b}</p>
+    
+       
     </>
   )
 }
