@@ -1,29 +1,26 @@
-import{useState,useEffect}from "react";
+import { useState } from 'react'
 import './App.css'
 function App() {
-  const[greeting,setGreeting]=useState("");
-  useEffect(()=>{
-    const interval=setInterval(()=>{
-      const now=new Date;
-      const hours=String(now.getHours()).padStart(2,"0");
-      const min=String(now.getMinutes()).padStart(2,"0");
-      const sec=String(now.getSeconds()).padStart(2,"0");
-      let msg="";
-      if(hours<12)msg="Good morning";
-      else if(hours<16)msg="Good afternoon";
-      else if(hours<20)msg="Good Evening";
-      else msg="Good night"
-      setGreeting(`${msg}<br/> ${hours}:${min}:${sec}`);
-},1000);
-  },[]);
-    
-  
+  const[num1,setNum1]=useState("");
+  const[num2,setNum2]=useState("");
 
+  const a=Number(num1);
+  const b=Number(num2);
+
+
+  
   return (
     <>
-        <div>
-          <h1 dangerouslySetInnerHTML={{__html:greeting }}></h1>
-        </div>
+    <h1>Live Calculator</h1>
+    <input type="number" value={num1} onChange={(e)=>setNum1(e.target.value)} />
+    <input type="number" value={num2} onChange={(e)=>setNum2(e.target.value)} />
+    <h2>Results</h2>
+    <p>Addition:{a+b}</p>
+    <p>Subtraction:{a-b}</p>
+    <p>Multiply:{a*b}</p>
+    <p>Division:{a/b}</p>
+    
+       
     </>
   )
 }
