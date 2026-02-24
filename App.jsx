@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+ function App() {
+   const[greeting , setGreeting] = useState("");
+ 
+  useEffect(()=>{
+    const interval = setInterval(()=>{
+      const now = new Date();
+      const hour = String(now.getHours()).padStart(2,"0");
+      const min = String(now.getMinutes()).padStart(2,"0");
+      const sec = String(now.getSeconds()).padStart(2,"0");
+
+      let msg = ""
+      if (hour < 12) msg = "good morning";
+      else if(hour < 16) msg = "good afternoon"
+      else if(hour <19)  msg = "good evening"
+      else msg = "good night"
+
+      setGreeting(`${msg} <br/> ${hour} : ${min} : ${sec}`);
+
+    },1000);
+
+  
 
   return (
     <>
+      <h1>digital clock</h1>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1 dangerouslySetInnerHTML={{__html :greeting}}></h1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
-
 export default App
